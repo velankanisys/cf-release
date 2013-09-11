@@ -1,0 +1,11 @@
+#!/bin/sh
+
+<% db = properties.send(properties.db) %>
+
+echo 10
+
+mkdir -p /var/vcap/store/psql_dumps
+
+<% db.databases.each do |database| %>
+/var/vcap/packages/postgres/bin/pg_dump --host 127.0.0.1 --port <%= db.port %> --user vcap <%= database.name %> > /var/vcap/store/psql_dumps/<%= database.name %>.sql
+<% end %>
