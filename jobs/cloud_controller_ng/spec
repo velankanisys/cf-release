@@ -3,7 +3,7 @@ name: cloud_controller_ng
 templates:
   nginx_ctl.erb: bin/nginx_ctl
   nginx.conf.erb: config/nginx.conf
-  nginx_drain.rb: bin/drain
+  drain.rb: bin/drain
   mime.types: config/mime.types
   cloud_controller_api.yml.erb: config/cloud_controller_ng.yml
   cloud_controller_api_ctl.erb: bin/cloud_controller_ng_ctl
@@ -27,6 +27,9 @@ packages:
   - sqlite
   - ruby
   - syslog_aggregator
+  - buildpack_java
+  - buildpack_ruby
+  - buildpack_nodejs
 
 properties:
   ssl.skip_cert_verify:
@@ -426,3 +429,7 @@ properties:
 
   uaa.clients.cc_service_broker_client.secret:
     description: "Used for generating SSO clients for service brokers."
+
+  ccng.install_buildpacks:
+    description: "Set of buildpacks to install during deploy" 
+
